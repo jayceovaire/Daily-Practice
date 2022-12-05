@@ -2,5 +2,5 @@ name,price,quantity
 "Phone",100.0,1
 "Laptop",1000.0,3
 "Cable",10.0,5
-"Mouse",50,5
+"Mouse",50.0,5
 "Keyboard",75.0,5
