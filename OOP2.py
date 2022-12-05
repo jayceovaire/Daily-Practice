@@ -1,18 +1,12 @@
 from Item import Item
+from Phone import Phone
+from Keyboard import Keyboard
 
+item1 = Keyboard("jscKeyboard", 1000, 3)
+item2 = Phone("iphone14", 1200, 2)
 
-item1 = Item("MyItem", 750)
-print(item1.name)
+item1.apply_discount()
 
-#Setting an Attribute
-item1.name = "OtherItem"
-
-#Getting an Attribute
-print(item1.name)
-
-
-
-
-
-
-
+print(Keyboard.keyboards)
+print(Phone.phones)
+print(Item.all)
