@@ -1,7 +1,10 @@
 import random
 
 # Define plant class
+
+
 class Plant:
+
     def __init__(self, color, height, smell, flower_size, strain):
         self.color = color
         self.height = height
@@ -23,7 +26,6 @@ def breed_plants(plant1, plant2, plants, trait_counts):
     else:
         smell = random.choice([plant1.smell, plant2.smell])
 
-
     # If the parent plants have different strains,
     # there is a 1/3 chance of creating a plant with "hybrid" strain
     if plant1.strain.lower() == "indica" and plant2.strain.lower() == "sativa":
@@ -37,7 +39,6 @@ def breed_plants(plant1, plant2, plants, trait_counts):
             strain = random.choice(["indica", "sativa", "hybrid", "hybrid"])
         else:
             strain = random.choice([plant1.strain, plant2.strain])
-
 
     # If the parent plants have different flower sizes,
     # there is a 1/3 chance of creating a plant with medium flower size
@@ -63,6 +64,7 @@ def breed_plants(plant1, plant2, plants, trait_counts):
 # Create initial plants
 # Prompt the user to input values for each trait of plant 1
 
+
 color1 = input("Enter color of plant 1: ")
 
 height1 = ""
@@ -77,7 +79,7 @@ while flower_size1 not in ["light", "medium", "heavy"]:
 
 strain1 = ""
 while strain1 not in ["indica", "sativa", "hybrid"]:
- strain1 = input("Enter strain of plant 1 (indica, sativa, hybrid): ")
+    strain1 = input("Enter strain of plant 1 (indica, sativa, hybrid): ")
 
 # Create plant 1
 plant1 = Plant(color1, height1, smell1, flower_size1, strain1)
