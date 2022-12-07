@@ -37,6 +37,19 @@ def breed_plants(plant1, plant2, plants, trait_counts):
         # and a 1/2 chance of creating a plant with "hybrid" strain
         if plant1.strain.lower() == "hybrid" and plant2.strain.lower() == "hybrid":
             strain = random.choice(["indica", "sativa", "hybrid", "hybrid"])
+
+        elif plant1.strain.lower() == "hybrid" and plant2.strain.lower() == "indica":
+            strain = random.choice(["hybrid", "indica", "sativa", "indica"])
+
+        elif plant1.strain.lower() == "hybrid" and plant2.strain.lower() == "sativa":
+            strain = random.choice(["hybrid", "indica", "sativa", "sativa"])
+
+        elif plant2.strain.lower() == "hybrid" and plant1.strain.lower() == "indica":
+            strain = random.choice(["hybrid", "indica", "sativa", "indica"])
+
+        elif plant2.strain.lower() == "hybrid" and plant1.strain.lower() == "sativa":
+            strain = random.choice(["hybrid", "indica", "sativa", "sativa"])
+
         else:
             strain = random.choice([plant1.strain, plant2.strain])
 
@@ -111,7 +124,7 @@ plants = []
 trait_counts = {}
 
 # Input number of plants to breed
-num_plants = int(input("Enter number of plants to breed: "))
+num_plants = int(input("Enter number of seeds expected: "))
 
 # Breed plants and print result
 for i in range(num_plants):
