@@ -29,7 +29,10 @@ def breed_plants(plant1, plant2, plants, trait_counts):
     # If the parent plants have different strains,
     # there is a 1/3 chance of creating a plant with "hybrid" strain
     if plant1.strain.lower() == "indica" and plant2.strain.lower() == "sativa":
-        strain = random.choice(["indica", "sativa", "hybrid"])
+        strain = random.choice(["indica", "sativa", "hybrid", "hybrid"])
+
+    elif plant1.strain.lower() == "sativa" and plant2.strai.lower() == "indica":
+        strain = random.choice(["indica", "sativa", "hybrid", "hybrid"])
     else:
         # If the parent plants are both hybrid,
         # there is a 1/4 chance of creating a plant with "indica" strain,
@@ -114,7 +117,7 @@ strain2 = ""
 while strain2 not in ["indica", "sativa", "hybrid"]:
     strain2 = input("Enter strain of plant 2 (indica, sativa, hybrid): ")
 
-# Create plant 1
+# Create plant 2
 plant2 = Plant(color2, height2, smell2, flower_size2, strain2)
 
 # Initialize empty list of plants
