@@ -68,17 +68,6 @@ class Player:
             except: ValueError
 
 
-
-
-        # Use the choice to get the card from the hand list and remove it
-        card = self.hand[int(choice) - 1]
-        self.hand.remove(card)
-
-        # Add the card to the removed_cards list
-        self.removed_cards.append(card)
-
-        print(f"{self.name} discarded the {card}")
-
     def draw_multiple_cards(self, num_cards):
         # Draw multiple cards from the deck and return them as a list
         drawn_cards = []
