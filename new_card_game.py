@@ -67,6 +67,50 @@ class Player:
                     print("Invalid choice. Please enter a number between 1 and {}".format(len(self.hand)))
             except: ValueError
 
+    def discard_multiple_cards(self, num_cards):
+        # Print the cards in the player's hand along with a number for each card
+        print(f"{self.name}'s hand:")
+        for i, card in enumerate(self.hand):
+            print(f"{i + 1}. {card}")
+
+        discarded_cards = []
+
+        # Loop until the player has discarded the specified number of cards
+        while len(discarded_cards) < num_cards:
+            try:
+                # Prompt the player to enter the number corresponding to the card they want to discard
+                print("\n")
+                choice = input("Enter the number of the card you want to discard: ")
+
+                # Convert the choice to an integer
+                choice = int(choice)
+
+                # Check if the choice is a valid number
+                if choice >= 1 and choice <= len(self.hand):
+                    # Use the choice to get the card from the hand list and remove it
+                    card = self.hand[choice - 1]
+                    self.hand.remove(card)
+                    print(f"{self.name} discarded the {card} \n")
+
+                    # Add the card to the discarded_cards and removed_cards lists
+                    discarded_cards.append(card)
+                    self.removed_cards.append(card)
+
+                    # Print the cards in the player's hand along with a number for each card
+                    print(f"{self.name}'s hand:")
+                    for i, card in enumerate(self.hand):
+                        print(f"{i + 1}. {card}")
+
+
+                else:
+                    print("Invalid choice. Please enter a number between 1 and {}".format(len(self.hand)))
+            except:
+                ValueError
+
+        # Print the discarded cards
+        print(f"{self.name} discarded the following cards:")
+        print(discarded_cards)
+
 
     def draw_multiple_cards(self, num_cards):
         # Draw multiple cards from the deck and return them as a list
@@ -87,6 +131,4 @@ player1 = Player("Josh", deck, removed_cards)
 player2 = Player("Computer", deck, removed_cards)
 
 player1.draw_multiple_cards(5)
-player1.show_hand()
-player1.discard_card()
-player1.show_hand()
+player1.discard_multiple_cards(2)
