@@ -127,8 +127,39 @@ class Player:
         print(f"{self.name}'s hand:")
         print(self.hand)
 
+    def play_card(self):
+        # print the cards in players hand with a number for each card
+        print(f"{self.name}'s {self.hand}")
+        for i, card in enumerate(self.hand):
+            print(f"{i + 1}. {card}")
+
+        # Loop until the player enters a valid choice
+        while True:
+            try:
+                # Prompt the player to enter a number corresponding to the card they want to play
+                choice = input("Enter the number of the card you want to play: ")
+
+                #convert the choice to an integer
+                choice = int(choice)
+
+                #check if choice is a valid number
+                if choice >= 1 and choice <= len(self.hand):
+                        #use the choice to get the card from the hand list and remove it
+
+                    card = self.hand[choice -1]
+                    self.hand.remove(card)
+
+                    #add the card to the removed_cards list
+                    self.removed_cards.append(card)
+
+                    print(f"{self.name} played the {card}")
+                    return card
+                else:
+                        print("invalid choice please enter a number between 1 and {}".format(len(self.hand)))
+            except: ValueError
+
 player1 = Player("Josh", deck, removed_cards)
 player2 = Player("Computer", deck, removed_cards)
 
 player1.draw_multiple_cards(5)
-player1.discard_multiple_cards(2)
+player1.play_card()
