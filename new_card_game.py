@@ -14,6 +14,24 @@ deck = ['2 of Hearts', '3 of Hearts', '4 of Hearts', '5 of Hearts', '6 of Hearts
 removed_cards = []
 
 
+class Board:
+    def __init__(self):
+        self.cards_in_play = []
+
+    def add_card(self, card):
+        self.cards_in_play.append(card)
+
+    def remove_card(self, card):
+        self.cards_in_play.remove(card)
+
+    def view_cards(self):
+        print("Cards in play:")
+        for card in self.cards_in_play:
+            print(card)
+
+
+board = Board()
+
 class Player:
     def __init__(self, name, deck, removed_cards):
         self.name = name
@@ -21,7 +39,7 @@ class Player:
         self.deck = deck
         self.removed_cards = removed_cards
         self.hand = []
-
+        self.board = board
     def draw_card(self):
         # Generate a random index for the card that you want to remove
         index = random.randint(0, len(self.deck) - 1)
@@ -128,6 +146,12 @@ class Player:
         print(self.hand)
 
     def play_card(self):
+
+        #check if the player has any cards in their hand
+        if len(self.hand) == 0:
+            print("You have no cards in your hand.")
+            return
+
         # print the cards in players hand with a number for each card
         print(f"{self.name}'s {self.hand}")
         for i, card in enumerate(self.hand):
@@ -145,12 +169,14 @@ class Player:
                 #check if choice is a valid number
                 if choice >= 1 and choice <= len(self.hand):
                         #use the choice to get the card from the hand list and remove it
-
                     card = self.hand[choice -1]
                     self.hand.remove(card)
 
                     #add the card to the removed_cards list
                     self.removed_cards.append(card)
+
+                    #add card to cards in play on board
+                    self.board.cards_in_play.append(card)
 
                     print(f"{self.name} played the {card}")
                     return card
@@ -163,3 +189,6 @@ player2 = Player("Computer", deck, removed_cards)
 
 player1.draw_multiple_cards(5)
 player1.play_card()
+board.view_cards()
+
+
