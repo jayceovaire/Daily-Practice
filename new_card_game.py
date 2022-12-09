@@ -40,6 +40,32 @@ class Player:
         self.removed_cards = removed_cards
         self.hand = []
         self.board = board
+
+    def view_hand(self):
+        # Print the cards in the player's hand along with a number for each card
+        print(f"{self.name}'s hand:")
+        for i, card in enumerate(self.hand):
+            print(f"{i + 1}. {card}")
+    def inspect_deck(self):
+        print(f"There are {len(deck)} cards left in the deck.")
+    def mill(self, num_milled):
+        # use a for loop to remove cards from the deck
+        for i in range(num_milled):
+            index = random.randint(0, len(self.deck) - 1)
+            # use pop method to remove the card at specified index from the deck
+            card = self.deck.pop(index)
+            # add card to removed_cards list
+            self.removed_cards.append(card)
+
+        print(f"{self.name} milled {num_milled} cards")
+
+
+
+    def Diceroll(self, sides):
+        # roll a die with X number of sides and print the outcome
+        self.sides = sides
+        print(f"{self.name} rolled a {random.randint(1, self.sides)}")
+
     def draw_card(self):
         # Generate a random index for the card that you want to remove
         index = random.randint(0, len(self.deck) - 1)
@@ -184,11 +210,14 @@ class Player:
                         print("invalid choice please enter a number between 1 and {}".format(len(self.hand)))
             except: ValueError
 
+
 player1 = Player("Josh", deck, removed_cards)
 player2 = Player("Computer", deck, removed_cards)
 
 player1.draw_multiple_cards(5)
 player1.play_card()
 board.view_cards()
-
-
+player1.Diceroll(6)
+player1.mill(2)
+player1.inspect_deck()
+player1.view_hand()
