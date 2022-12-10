@@ -81,13 +81,148 @@ class Player:
 
     # check number of tokens player has
     def view_tokens(self):
-        print(f"{self.name} has {self.tokens} tokens")
+        print(f"{self.name} has {self.tokens} tokens\n")
 
     def view_hand(self):
         # Print the cards in the player's hand along with a number for each card
         print(f"{self.name}'s hand:")
         for i, card in enumerate(self.hand):
             print(f"{i + 1}. {card}")
+
+    def swap_cards_with_player(self, other_player):
+        # List of cards to swap with the other player
+        swapped_cards = []
+        self.swapped_cards = swapped_cards
+
+        # Prompt user to enter number of cards they want to swap with the other player
+        card_number = 0
+        while card_number == 0:
+            try:
+                card_number = int(
+                    input(f"{self.name}, how many cards would you like to swap with {other_player.name}?: "))
+                # Check that the number of cards to swap is not greater than the number of cards in the player's hand
+                if card_number > len(self.hand):
+                    print(
+                        "You don't have that many cards in your hand. Please enter a number between 1 and {}".format(
+                            len(self.hand)))
+                    card_number = 0
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+
+        # Loop until the player has swapped the specified number of cards
+        while len(self.swapped_cards) < card_number:
+            # Print the cards in the player's hand along with a number for each card
+            print(f"{self.name}'s hand:")
+            for i, card in enumerate(self.hand):
+                print(f"{i + 1}. {card}")
+
+            # Prompt the player to enter the number corresponding to the card they want to swap
+            choice = input("Enter the number of the card you want to swap: ")
+
+            try:
+                # Convert the choice to an integer
+                choice = int(choice)
+
+                # Check if the choice is a valid number
+                if choice >= 1 and choice <= len(self.hand):
+                    # Use the choice to get the card from the player's hand and remove it
+                    card = self.hand[choice - 1]
+                    self.hand.remove(card)
+
+                    # Add the card to the swapped_cards list
+                    self.swapped_cards.append(card)
+
+                    print(f"{self.name} will swap the {card}")
+
+                else:
+                    print("Invalid choice. Please enter a number between 1 and {}".format(len(self.hand)))
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+
+        # Draw new cards from the other player's hand and add them to the player's hand
+        for i in range(card_number):
+            index = random.randint(0, len(other_player.hand) - 1)
+            card = other_player.hand.pop(index)
+            self.hand.append(card)
+
+        # Add the cards from the swapped_cards list to the other player's hand
+        for card in self.swapped_cards:
+            other_player.hand.append(card)
+
+    def swap_cards_deck(self):
+            # List of cards to swap into deck
+            swapped_cards = []
+            self.swapped_cards = swapped_cards
+
+            # Prompt user to enter number of cards they want to swap with the deck
+            card_number = 0
+            while card_number == 0:
+                try:
+                    card_number = int(input(f"{self.name}, how many cards would you like to swap with the deck?: "))
+                    # Check that the number of cards to swap is not greater than the number of cards in the player's hand
+                    if card_number > len(self.hand):
+                        print(
+                            "You don't have that many cards in your hand. Please enter a number between 1 and {}".format(
+                                len(self.hand)))
+                        card_number = 0
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
+
+            # Loop until the player has swapped the specified number of cards
+            while len(self.swapped_cards) < card_number:
+                # Print the cards in the player's hand along with a number for each card
+                print(f"{self.name}'s hand:")
+                for i, card in enumerate(self.hand):
+                    print(f"{i + 1}. {card}")
+
+                # Prompt the player to enter the number corresponding to the card they want to swap
+                choice = input("Enter the number of the card you want to swap: ")
+
+                try:
+                    # Convert the choice to an integer
+                    choice = int(choice)
+
+                    # Check if the choice is a valid number
+                    if choice >= 1 and choice <= len(self.hand):
+                        # Use the choice to get the card from the hand list and remove it
+                        card = self.hand[choice - 1]
+                        self.hand.remove(card)
+
+                        # Add the card to the swapped_cards list
+                        self.swapped_cards.append(card)
+
+                        print(f"{self.name} will swap the {card}")
+
+                    else:
+                        print("Invalid choice. Please enter a number between 1 and {}".format(len(self.hand)))
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
+
+            # Draw new cards and add them to the player's hand
+            for card in swapped_cards:
+                self.deck.append(card)
+            for i in range(card_number):
+                index = random.randint(0, len(self.deck) - 1)
+                card = self.deck.pop(index)
+                self.hand.append(card)
+
+    def mulligan(self):
+        # create a new empty list to store player's new hand of cards
+        new_hand = []
+
+        # add current hand back to deck
+        for i in self.hand:
+            self.deck.append(i)
+
+        # draw new hand of cards from deck
+        for card in range(len(self.hand)):
+            index = random.randint(0, len(self.deck) - 1)
+            card = self.deck.pop(index)
+            new_hand.append(card)
+
+        # set players hand to the new hand of cards
+        self.hand = new_hand
+        print(f"{self.name} took a mulligan and drew a new hand\n")
 
     # check to see how many cards are left in deck
     @staticmethod
@@ -103,12 +238,12 @@ class Player:
             # add card to removed_cards list
             self.removed_cards.append(card)
 
-        print(f"{self.name} milled {num_milled} cards")
+        print(f"{self.name} milled {num_milled} cards\n")
 
     # Flip a coin
     def coinflip(self):
         coin = ['Heads', 'Tails']
-        print(f"{self.name} flipped a coin and it came up {random.choice(coin)}")
+        print(f"{self.name} flipped a coin and it came up {random.choice(coin)}\n")
 
     def diceroll(self, sides=6, num_of_dice=1):
         # roll a die with X number of sides and print the outcome
@@ -119,9 +254,10 @@ class Player:
             self.rolled_dice.append(droll_outcome)
             counter += 1
 
+
     # view most recent dice roll
     def view_rolled_dice(self):
-        print(f"{self.name} last rolled {self.rolled_dice}")
+        print(f"{self.name} last rolled {self.rolled_dice}\n")
 
     def draw_card(self):
         # Generate a random index for the card that you want to remove
@@ -167,6 +303,7 @@ class Player:
             except:
                 ValueError
 
+
     def discard_multiple_cards(self, num_cards):
         # Print the cards in the player's hand along with a number for each card
         print(f"{self.name}'s hand:")
@@ -210,19 +347,21 @@ class Player:
         print(f"{self.name} discarded the following cards:")
         print(discarded_cards)
 
+
     def draw_multiple_cards(self, num_cards):
         # Draw multiple cards from the deck and return them as a list
         drawn_cards = []
         for _ in range(num_cards):
             drawn_card = self.draw_card()
             drawn_cards.append(drawn_card)
-
         return drawn_cards
+
 
     def show_hand(self):
         # Print the cards that the player currently has in their hand
         print(f"{self.name}'s hand:")
         print(self.hand)
+
 
     def play_card(self):
 
@@ -262,6 +401,13 @@ class Player:
                 ValueError
 
 
-player1 = Player("Josh", deck, removed_cards)
+player1 = Player("Human", deck, removed_cards)
 player2 = Player("Computer", deck, removed_cards)
 
+
+player1.draw_multiple_cards(3)
+player1.view_hand()
+player2.draw_multiple_cards(3)
+player1.swap_cards_with_player(player2)
+player1.view_hand()
+player2.view_hand()
