@@ -26,9 +26,9 @@ class Board:
 
     def clear_board(self):
         for card in self.cards_in_play:
-            #iterate through cards in play and remove them
+            # iterate through cards in play and remove them
             self.cards_in_play.remove(card)
-            #add cards in play to removed card list
+            # add cards in play to removed card list
             removed_cards.append(card)
 
     def view_cards(self):
@@ -39,37 +39,47 @@ class Board:
 
 board = Board()
 
+
 class Player:
     def __init__(self, name, deck, removed_cards, balance=1):
         self.name = name
         # Accept the deck and removed_cards lists as arguments and store them as instance variables
         self.deck = deck
-        self.removed_cards = removed_cards
-        self.hand = []
-        self.board = board
-        self.tokens = 0
-        self.rolled_dice = []
-        self.current_bet = 0
-        self.balance = balance
+        self.removed_cards = removed_cards  # cards that have been removed from the board or discarded
+        self.hand = []  # cards in players hand
+        self.board = board  # board class, used to pass arguments to the Board
+        self.tokens = 0  # tokens player has
+        self.rolled_dice = []  # list of most recently rolled dice
+        self.current_bet = 0  # current bet player has waged
+        self.balance = balance  # current balance player has available to bet on
+
+    # place a bet
     def place_bet(self, bet_amount):
-        self.current_bet =+ bet_amount
+        self.current_bet += bet_amount
         self.balance -= bet_amount
 
+    # raise current bet
     def raise_bet(self, raise_amount):
         self.current_bet += raise_amount
         self.balance -= raise_amount
 
+    # fold, give up, lose current round
     def fold_bet(self):
         self.current_bet = 0
 
+    # look at your current balance
     def view_balance(self):
         print(f"{self.name}'s balance is {self.balance}")
 
+    # take winnings from bet
     def payout_winnings(self, winnings):
         self.balance += winnings
+
+    # add tokens to player token count
     def add_tokens(self):
         self.tokens += 1
 
+    # check number of tokens player has
     def view_tokens(self):
         print(f"{self.name} has {self.tokens} tokens")
 
@@ -78,8 +88,12 @@ class Player:
         print(f"{self.name}'s hand:")
         for i, card in enumerate(self.hand):
             print(f"{i + 1}. {card}")
-    def inspect_deck(self):
+
+    # check to see how many cards are left in deck
+    @staticmethod
+    def inspect_deck():
         print(f"There are {len(deck)} cards left in the deck.")
+
     def mill(self, num_milled):
         # use a for loop to remove cards from the deck
         for i in range(num_milled):
@@ -91,19 +105,24 @@ class Player:
 
         print(f"{self.name} milled {num_milled} cards")
 
+    # Flip a coin
     def coinflip(self):
         coin = ['Heads', 'Tails']
         print(f"{self.name} flipped a coin and it came up {random.choice(coin)}")
 
     def diceroll(self, sides=6, num_of_dice=1):
         # roll a die with X number of sides and print the outcome
-        self.sides = sides
         counter = 0
         while counter != num_of_dice:
             droll_outcome = random.randint(1, sides)
             print(f"{self.name} rolled a {droll_outcome}")
             self.rolled_dice.append(droll_outcome)
             counter += 1
+
+    # view most recent dice roll
+    def view_rolled_dice(self):
+        print(f"{self.name} last rolled {self.rolled_dice}")
+
     def draw_card(self):
         # Generate a random index for the card that you want to remove
         index = random.randint(0, len(self.deck) - 1)
@@ -116,7 +135,6 @@ class Player:
         # Return the card that was drawn
         print(f"{self.name} drew the {card}")
         return card
-
 
     def discard_card(self):
         # Print the cards in the player's hand along with a number for each card
@@ -146,7 +164,8 @@ class Player:
                     break
                 else:
                     print("Invalid choice. Please enter a number between 1 and {}".format(len(self.hand)))
-            except: ValueError
+            except:
+                ValueError
 
     def discard_multiple_cards(self, num_cards):
         # Print the cards in the player's hand along with a number for each card
@@ -182,7 +201,6 @@ class Player:
                     for i, card in enumerate(self.hand):
                         print(f"{i + 1}. {card}")
 
-
                 else:
                     print("Invalid choice. Please enter a number between 1 and {}".format(len(self.hand)))
             except:
@@ -191,7 +209,6 @@ class Player:
         # Print the discarded cards
         print(f"{self.name} discarded the following cards:")
         print(discarded_cards)
-
 
     def draw_multiple_cards(self, num_cards):
         # Draw multiple cards from the deck and return them as a list
@@ -209,7 +226,7 @@ class Player:
 
     def play_card(self):
 
-        #check if the player has any cards in their hand
+        # check if the player has any cards in their hand
         if len(self.hand) == 0:
             print("You have no cards in your hand.")
             return
@@ -225,26 +242,26 @@ class Player:
                 # Prompt the player to enter a number corresponding to the card they want to play
                 choice = input("Enter the number of the card you want to play: ")
 
-                #convert the choice to an integer
+                # convert the choice to an integer
                 choice = int(choice)
 
-                #check if choice is a valid number
+                # check if choice is a valid number
                 if choice >= 1 and choice <= len(self.hand):
-                        #use the choice to get the card from the hand list and remove it
-                    card = self.hand[choice -1]
+                    # use the choice to get the card from the hand list and remove it
+                    card = self.hand[choice - 1]
                     self.hand.remove(card)
 
-
-
-                    #add card to cards in play on board
+                    # add card to cards in play on board
                     self.board.cards_in_play.append(card)
 
                     print(f"{self.name} played the {card}")
                     return card
                 else:
-                        print("invalid choice please enter a number between 1 and {}".format(len(self.hand)))
-            except: ValueError
+                    print("invalid choice please enter a number between 1 and {}".format(len(self.hand)))
+            except:
+                ValueError
 
 
 player1 = Player("Josh", deck, removed_cards)
 player2 = Player("Computer", deck, removed_cards)
+
