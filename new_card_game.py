@@ -24,6 +24,13 @@ class Board:
     def remove_card(self, card):
         self.cards_in_play.remove(card)
 
+    def clear_board(self):
+        for card in self.cards_in_play:
+            #iterate through cards in play and remove them
+            self.cards_in_play.remove(card)
+            #add cards in play to removed card list
+            removed_cards.append(card)
+
     def view_cards(self):
         print("Cards in play:")
         for card in self.cards_in_play:
@@ -33,13 +40,38 @@ class Board:
 board = Board()
 
 class Player:
-    def __init__(self, name, deck, removed_cards):
+    def __init__(self, name, deck, removed_cards, balance=1):
         self.name = name
         # Accept the deck and removed_cards lists as arguments and store them as instance variables
         self.deck = deck
         self.removed_cards = removed_cards
         self.hand = []
         self.board = board
+        self.tokens = 0
+        self.rolled_dice = []
+        self.current_bet = 0
+        self.balance = balance
+    def place_bet(self, bet_amount):
+        self.current_bet =+ bet_amount
+        self.balance -= bet_amount
+
+    def raise_bet(self, raise_amount):
+        self.current_bet += raise_amount
+        self.balance -= raise_amount
+
+    def fold_bet(self):
+        self.current_bet = 0
+
+    def view_balance(self):
+        print(f"{self.name}'s balance is {self.balance}")
+
+    def payout_winnings(self, winnings):
+        self.balance += winnings
+    def add_tokens(self):
+        self.tokens += 1
+
+    def view_tokens(self):
+        print(f"{self.name} has {self.tokens} tokens")
 
     def view_hand(self):
         # Print the cards in the player's hand along with a number for each card
@@ -59,13 +91,19 @@ class Player:
 
         print(f"{self.name} milled {num_milled} cards")
 
+    def coinflip(self):
+        coin = ['Heads', 'Tails']
+        print(f"{self.name} flipped a coin and it came up {random.choice(coin)}")
 
-
-    def Diceroll(self, sides):
+    def diceroll(self, sides=6, num_of_dice=1):
         # roll a die with X number of sides and print the outcome
         self.sides = sides
-        print(f"{self.name} rolled a {random.randint(1, self.sides)}")
-
+        counter = 0
+        while counter != num_of_dice:
+            droll_outcome = random.randint(1, sides)
+            print(f"{self.name} rolled a {droll_outcome}")
+            self.rolled_dice.append(droll_outcome)
+            counter += 1
     def draw_card(self):
         # Generate a random index for the card that you want to remove
         index = random.randint(0, len(self.deck) - 1)
@@ -75,7 +113,6 @@ class Player:
 
         # Add the card to the removed_cards list
         self.hand.append(card)
-        self.removed_cards.append(card)
         # Return the card that was drawn
         print(f"{self.name} drew the {card}")
         return card
@@ -163,7 +200,6 @@ class Player:
             drawn_card = self.draw_card()
             drawn_cards.append(drawn_card)
 
-
         return drawn_cards
 
     def show_hand(self):
@@ -198,8 +234,7 @@ class Player:
                     card = self.hand[choice -1]
                     self.hand.remove(card)
 
-                    #add the card to the removed_cards list
-                    self.removed_cards.append(card)
+
 
                     #add card to cards in play on board
                     self.board.cards_in_play.append(card)
@@ -213,11 +248,3 @@ class Player:
 
 player1 = Player("Josh", deck, removed_cards)
 player2 = Player("Computer", deck, removed_cards)
-
-player1.draw_multiple_cards(5)
-player1.play_card()
-board.view_cards()
-player1.Diceroll(6)
-player1.mill(2)
-player1.inspect_deck()
-player1.view_hand()
