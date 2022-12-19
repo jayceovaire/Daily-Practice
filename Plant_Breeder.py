@@ -125,6 +125,11 @@ plants = []
 
 # Initialize empty dictionary for trait counts
 trait_counts = {}
+strain_counts = {"indica": 0, "sativa": 0, "hybrid": 0}
+smell_counts = {plant1.smell: 0, plant2.smell: 0, "new smell": 0}
+color_counts = {plant1.color: 0, plant2.color: 0}
+flower_counts = {"heavy": 0, "medium": 0, "light": 0}
+height_counts = {"tall": 0, "short": 0}
 
 # Input number of plants to breed
 num_plants = int(input("Enter number of seeds expected: "))
@@ -140,3 +145,33 @@ total_plants = sum(trait_counts.values())
 for trait_string, count in trait_counts.items():
     percentage = 100 * count / total_plants
     print(f"{percentage:.2f}% of plants have traits: {trait_string}")
+
+# iterate through plants and update count of expected strain types
+for plant in plants:
+    color_counts[plant.color.lower()] += 1
+    height_counts[plant.height.lower()] += 1
+    smell_counts[plant.smell.lower()] += 1
+    flower_counts[plant.flower_size.lower()] += 1
+    strain_counts[plant.strain.lower()] += 1
+
+
+# Print Individual Traits as percentages
+for color, count in color_counts.items():
+    percentage = 100 * count / total_plants
+    print(f"{percentage:.2f}% of plants are {color}")
+
+for height, count in height_counts.items():
+    percentage = 100 * count / total_plants
+    print(f"{percentage:.2f}% of plants are {height}")
+
+for smell, count in smell_counts.items():
+    percentage = 100 * count / total_plants
+    print(f"{percentage:.2f}% of plants are {smell}")
+
+for flower, count in flower_counts.items():
+    percentage = 100 * count / total_plants
+    print(f"{percentage:.2f}% of plants are {flower}")
+
+for strain, count in strain_counts.items():
+    percentage = 100 * count / total_plants
+    print(f"{percentage:.2f}% of plants are {strain}")
