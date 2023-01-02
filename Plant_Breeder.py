@@ -166,11 +166,11 @@ for height, count in height_counts.items():
 
 for smell, count in smell_counts.items():
     percentage = 100 * count / total_plants
-    print(f"{percentage:.2f}% of plants are {smell}")
+    print(f"{percentage:.2f}% of plants smell {smell}")
 
 for flower, count in flower_counts.items():
     percentage = 100 * count / total_plants
-    print(f"{percentage:.2f}% of plants are {flower}")
+    print(f"{percentage:.2f}% of plant flowers are {flower}")
 
 for strain, count in strain_counts.items():
     percentage = 100 * count / total_plants

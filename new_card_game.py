@@ -403,11 +403,3 @@ class Player:
 
 player1 = Player("Human", deck, removed_cards)
 player2 = Player("Computer", deck, removed_cards)
-
-
-player1.draw_multiple_cards(3)
-player1.view_hand()
-player2.draw_multiple_cards(3)
-player1.swap_cards_with_player(player2)
-player1.view_hand()
-player2.view_hand()
