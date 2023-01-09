@@ -1,5 +1,9 @@
 import random
 
+"""In order to use this package be sure to define the 'deck' list,
+the empty 'removed_cards' list, and initialize a board for the players
+to interact with"""
+
 # Define the deck and removed_cards lists outside of the Player class
 deck = ['2 of Hearts', '3 of Hearts', '4 of Hearts', '5 of Hearts', '6 of Hearts', '7 of Hearts',
         '8 of Hearts', '9 of Hearts', '10 of Hearts', 'Jack of Hearts', 'Queen of Hearts',
@@ -403,3 +407,4 @@ class Player:
 
 player1 = Player("Human", deck, removed_cards)
 player2 = Player("Computer", deck, removed_cards)
+

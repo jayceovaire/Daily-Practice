@@ -1,10 +1,10 @@
 from string import Template
 s = Template("$greeting, $user!")
 
-print(s.substitute(greeting="Hi", user="Josh"))
+print(s.substitute(greeting="Hi", user="Jayce"))
 
 greeting = "Hello"
-name = "Josh"
+name = "Jayce"
 message = "".join((greeting, ", ", name, "!"))
 print(message)
 print(f"{greeting + ', ' + name + '!'}")

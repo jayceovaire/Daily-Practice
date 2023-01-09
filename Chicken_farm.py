@@ -1,4 +1,5 @@
 import random
+
 """Chicken Farm Simulator"""
 
 global feed
@@ -84,5 +85,6 @@ class Farmer:
         for chicken in farmer1.chickens:
             chicken.peck()
             print(f"{feed} feed remaining\n")
+
 
 farmer1 = Farmer()
