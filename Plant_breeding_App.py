@@ -37,9 +37,9 @@ flower_button1.grid(row=1, column=7, pady=5, padx=10)
 flower_button2 = customtkinter.CTkSegmentedButton(master=root, values=["Light", "Medium", "Heavy"])
 flower_button2.grid(row=2, column=7, pady=5, padx=10)
 
-strain_button1 = customtkinter.CTkSegmentedButton(master=root, values=["Light", "Medium", "Heavy"])
+strain_button1 = customtkinter.CTkSegmentedButton(master=root, values=["Indica", "Sativa", "Hybrid"])
 strain_button1.grid(row=1, column=8, pady=5, padx=10)
-strain_button2 = customtkinter.CTkSegmentedButton(master=root, values=["Light", "Medium", "Heavy"])
+strain_button2 = customtkinter.CTkSegmentedButton(master=root, values=["Indica", "Sativa", "Hybrid"])
 strain_button2.grid(row=2, column=8, pady=5, padx=10)
 
 
