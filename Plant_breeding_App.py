@@ -43,9 +43,5 @@ strain_button2 = customtkinter.CTkSegmentedButton(master=root, values=["Light", 
 strain_button2.grid(row=2, column=8, pady=5, padx=10)
 
 
-
-
-
 if __name__ == "__main__":
     root.mainloop()
-
