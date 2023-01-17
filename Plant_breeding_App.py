@@ -1,67 +1,51 @@
-import tkinter as tk
+from tkinter import *
+import customtkinter
+from PIL import Image, ImageTk
 
-# Create the main window
-window = tk.Tk()
 
-# Create a frame to hold the radio buttons
-frame = tk.Frame(window)
+customtkinter.set_appearance_mode("system")
+customtkinter.set_default_color_theme("green")
+root = customtkinter.CTk()
 
-# Create a variable to hold the selected option
-selected_option1 = tk.StringVar()
-selected_option2 = tk.StringVar()
-selected_option3 = tk.StringVar()
-selected_option4 = tk.StringVar()
-selected_option5 = tk.StringVar()
-selected_option6 = tk.StringVar()
-selected_option7 = tk.StringVar()
-selected_option8 = tk.StringVar()
-selected_option9 = tk.StringVar()
-selected_option10 = tk.StringVar()
-selected_option11 = tk.StringVar()
-selected_option12 = tk.StringVar()
+root.title("Cannabis Breeder App")
+root.geometry(f"{1100}x{580}")
 
-# Create the radio buttons
-label1 = tk.Label(frame, text="Color")
-label2 = tk.Label(frame, text="Height")
-label3 = tk.Label(frame, text="Smell")
-label4 = tk.Label(frame, text="Flower size")
-label5 = tk.Label(frame, text="Strain")
-option1 = tk.Radiobutton(frame, text='Green', variable=selected_option1, value='Option 1')
-option2 = tk.Radiobutton(frame, text='Purple', variable=selected_option1, value='Option 2')
-option3 = tk.Radiobutton(frame, text='Short', variable=selected_option2, value='Option 3')
-option4 = tk.Radiobutton(frame, text='Tall', variable=selected_option2, value='Option 4')
-option5 = tk.Radiobutton(frame, text='Sweet', variable=selected_option3, value='Option 5')
-option6 = tk.Radiobutton(frame, text='Sour', variable=selected_option3, value='Option 6')
-option7 = tk.Radiobutton(frame, text='Light', variable=selected_option4, value='Option 7')
-option8 = tk.Radiobutton(frame, text='Medium', variable=selected_option4, value='Option 8')
-option9 = tk.Radiobutton(frame, text='Heavy', variable=selected_option4, value='Option 9')
-option10 = tk.Radiobutton(frame, text='Indica', variable=selected_option5, value='Option 10')
-option11 = tk.Radiobutton(frame, text='Sativa', variable=selected_option5, value='Option 11')
-option12 = tk.Radiobutton(frame, text='Hybrid', variable=selected_option5, value='Option 12')
-# Pack the radio buttons into the frame
-label1.grid(row=3, column=0)
-option1.grid(row=3, column=1)
-option2.grid(row=3, column=2)
+plant_label1 = customtkinter.CTkLabel(master=root, pady=5, padx=100, text="Plant 1")
+plant_label1.grid(row=1, column=0)
+plant_label2 = customtkinter.CTkLabel(master=root, pady=5, padx=100, text="Plant 2")
+plant_label2.grid(row=2, column=0)
 
-label2.grid(row=4, column=0)
-option3.grid(row=4, column=1)
-option4.grid(row=4, column=2)
+color_label = customtkinter.CTkLabel(master=root, text="Plant Color")
+color_label.grid(row=0, column=4, pady=5, padx=10)
+color_button1 = customtkinter.CTkSegmentedButton(master=root, values=["Green", "Purple"])
+color_button1.grid(row=1, column=4, pady=5, padx=10)
+color_button2 = customtkinter.CTkSegmentedButton(master=root, values=["Green","Purple"])
+color_button2.grid(row=2, column=4, pady=5, padx=10)
 
-label3.grid(row=5, column=0)
-option5.grid(row=5, column=1)
-option6.grid(row=5, column=2)
+height_button1 = customtkinter.CTkSegmentedButton(master=root, values=["Tall", "Short"])
+height_button1.grid(row=1, column=5, pady=5, padx=10)
+height_button2 = customtkinter.CTkSegmentedButton(master=root, values=["Tall","Short"])
+height_button2.grid(row=2, column=5, pady=5, padx=10)
 
-label4.grid(row=6, column=0)
-option7.grid(row=6, column=1)
-option8.grid(row=6, column=2)
-option9.grid(row=6, column=3
-             )
-label5.grid(row=7, column=0)
-option10.grid(row=7, column=1)
-option11.grid(row=7, column=2)
-option12.grid(row=7, column=3)
-# Pack the frame containing the radio buttons into the main window
-frame.pack()
+scent_button1 = customtkinter.CTkSegmentedButton(master=root, values=["Scent1", "Scent2"])
+scent_button1.grid(row=1, column=6, pady=5, padx=10)
+scent_button2 = customtkinter.CTkSegmentedButton(master=root, values=["Scent1", "Scent2"])
+scent_button2.grid(row=2, column=6, pady=5, padx=10)
 
-# Run the Tkinter event loop
-window.mainloop()
+flower_button1 = customtkinter.CTkSegmentedButton(master=root, values=["Light", "Medium", "Heavy"])
+flower_button1.grid(row=1, column=7, pady=5, padx=10)
+flower_button2 = customtkinter.CTkSegmentedButton(master=root, values=["Light", "Medium", "Heavy"])
+flower_button2.grid(row=2, column=7, pady=5, padx=10)
+
+strain_button1 = customtkinter.CTkSegmentedButton(master=root, values=["Light", "Medium", "Heavy"])
+strain_button1.grid(row=1, column=8, pady=5, padx=10)
+strain_button2 = customtkinter.CTkSegmentedButton(master=root, values=["Light", "Medium", "Heavy"])
+strain_button2.grid(row=2, column=8, pady=5, padx=10)
+
+
+
+
+
+if __name__ == "__main__":
+    root.mainloop()
+
