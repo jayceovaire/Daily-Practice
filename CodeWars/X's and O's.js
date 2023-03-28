@@ -25,6 +25,7 @@ function XO(str) {
 console.log(XO("afa")) //expect true X = 0 O = 0
 console.log(XO('xo')) //expect true X = O
 console.log(XO('xoxx')) //expect false X != O
+console.log(XO('123')) //expect true X = 0 O = 0
 
 
 
