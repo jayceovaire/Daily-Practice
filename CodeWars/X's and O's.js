@@ -14,12 +14,7 @@ function XO(str) {
             numO += 1
         }
     }
-    if(numX === numO){
-        return true
-    }
-    else{
-        return false
-    }
+    return numX === numO;
 }
 
 console.log(XO("afa")) //expect true X = 0 O = 0
