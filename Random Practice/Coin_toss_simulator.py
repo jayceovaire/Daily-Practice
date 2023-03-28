@@ -28,3 +28,4 @@ class Coin:
         # Display results of Heads and Tails
         for key, value in results.items():
             print(key, ":", value)
+
