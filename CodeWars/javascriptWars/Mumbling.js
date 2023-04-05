@@ -37,6 +37,19 @@ function accum2(s) {
 let test2 = accum2('abcd');
 console.log(test2); // outputs "A-Bb-Ccc-Dddd"
 
+//__________________________________>Recursive Solve<______________________________________________________________
+
+function accum3(s, i = 0, result = []) {
+  if (i >= s.length) {
+    return result.join('-');
+  }
+  const char = s.charAt(i).toUpperCase() + s.charAt(i).toLowerCase().repeat(i);
+  result.push(char);
+  return accum(s, i + 1, result);
+}
+
+let test3 = accum3('abcd');
+console.log(test3); // outputs "A-Bb-Ccc-Dddd"
 
 
 
