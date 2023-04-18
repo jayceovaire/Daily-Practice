@@ -29,4 +29,24 @@ def fizzbuzz2():
         if output == '': output = i
         print(output)
 
-fizzbuzz2()
+def fizzbuzz_recursive(n=100, fizz_hash={3: 'Fizz', 5: 'Buzz', 7: 'Bazz'}):
+    if n == 1:
+        return '1'
+
+    output = ''
+    for num in fizz_hash:
+        if n % num == 0:
+            output += fizz_hash[num]
+
+    if output == '':
+        output = str(n)
+
+    return fizzbuzz_recursive(n-1, fizz_hash) + ' ' + output
+
+
+
+def returner(function):
+    print(function)
+
+
+returner(fizzbuzz_recursive())
