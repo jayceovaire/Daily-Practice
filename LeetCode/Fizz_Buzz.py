@@ -4,52 +4,29 @@
 # every number divisible by 3 and 5 print fizzbuzz
 #list every other number
 
-for i in range(1,101):
-    if i % 3 == 0 and i % 5 == 0:
-        print(str(i) + ' fizzbuzz')
-    elif i% 3 == 0:
-        print(str(i) + ' fizz')
-    elif i% 5 == 0:
-        print(str(i) + ' buzz')
-    else:
-        print(str(i))
 
-#Shorter list comprehension version
+def fizzbuzz():
+    fizz_hash = {
+        3: 'Fizz',
+        5: 'Buzz',
+        7: 'Bazz',
+    }
+    for i in range(1, 101):
+        output = ''
+        for j in fizz_hash:
+            if i % j == 0:
+                output += fizz_hash[j]
+        if output == '':
+            output = i
+        print(output)
 
-for i in range(1,101):
-    fizz = 'Fizz' if i % 3 == 0 else ''
-    buzz = 'Buzz' if i % 5 == 0 else ''
-    print(f"{fizz}{buzz}" or i)
+def fizzbuzz2():
+    for i in range(1, 101):
+        output = ''
+        if i % 3 == 0: output += 'Fizz'
+        if i % 5 == 0: output += 'Buzz'
+        if i % 7 == 0: output += 'Bazz'
+        if output == '': output = i
+        print(output)
 
-
-# Separated lists / longer "code-y" version
-number =[]
-fizz = []
-buzz = []
-fizzbuzz = []
-for i in range(1,101):
-    if i % 3 == 0 and i % 5 == 0:
-        fizzbuzz.append(i)
-
-    if i % 3 == 0:
-        fizz.append(i)
-
-    if i % 5 == 0:
-        buzz.append(i)
-    if i % 3 !=0 and i % 5 !=0:
-        number.append(i)
-
-for i in fizz:
-    if i % 5 == 0:
-        fizz.remove(i)
-
-
-for i in buzz:
-    if i % 3 == 0:
-        buzz.remove(i)
-
-
-print(f"Fizz: \n {fizz}")
-print(f"Buzz: \n {buzz}")
-print(f"FizzBuzz: \n {fizzbuzz}")
-print(f"Other Numbers: \n {number}")
+fizzbuzz2()
