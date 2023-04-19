@@ -22,5 +22,5 @@ def test(test_num, function, *args, result):
         assert actual_result == result
         print(f"{function.__name__} Test {test_num} Passed")
     except AssertionError:
-        print(f"{function.__name__} Test {test_num} Failed: Expected {result}, but got {actual_result}")
-
+        print(f"{function.__name__} Test {test_num} Failed: "
+              f"Expected {result}, but got {actual_result}")
