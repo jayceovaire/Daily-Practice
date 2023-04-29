@@ -4,4 +4,6 @@
 // Big O of getting a value out of an array O(1)
 // GET, INSERT, DELETE all O(1) on arrays.
 
- const a = [] //is not an array
+const a: any = [] //is not an array
+
+
