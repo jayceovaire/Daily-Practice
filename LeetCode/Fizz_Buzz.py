@@ -1,8 +1,8 @@
-#Fizzbuzz problem
+# Fizzbuzz problem
 # make a list of 1 to 100 and for every number divisible by 3 print fizz
 # every number divisible by 5 print buzz
 # every number divisible by 3 and 5 print fizzbuzz
-#list every other number
+# list every other number
 
 
 def fizzbuzz():
@@ -20,6 +20,7 @@ def fizzbuzz():
             output = i
         print(output)
 
+
 def fizzbuzz2():
     for i in range(1, 101):
         output = ''
@@ -29,7 +30,10 @@ def fizzbuzz2():
         if output == '': output = i
         print(output)
 
-def fizzbuzz_recursive(n=100, fizz_hash={3: 'Fizz', 5: 'Buzz', 7: 'Bazz'}):
+
+def fizzbuzz_recursive(n=100):
+
+    fizz_hash = {3: 'Fizz', 5: 'Buzz', 7: 'Bazz'}
     if n == 1:
         return '1'
 
@@ -41,12 +45,10 @@ def fizzbuzz_recursive(n=100, fizz_hash={3: 'Fizz', 5: 'Buzz', 7: 'Bazz'}):
     if output == '':
         output = str(n)
 
-    return fizzbuzz_recursive(n-1, fizz_hash) + ' ' + output
-
+    return fizzbuzz_recursive(n-1) + ' ' + output
 
 
 def returner(function):
     print(function)
-
 
 returner(fizzbuzz_recursive())

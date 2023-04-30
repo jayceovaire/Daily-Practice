@@ -7,7 +7,7 @@ const needle: number = 8
 function linearSearch(haystack: number[], needle: number): any{
     for (let i = 0; i < haystack.length; i++){
         if (haystack[i] === needle){
-            return true;
+            return true + 'needle found at location [' + haystack[i] + ']';
         }
     }
     return false;
