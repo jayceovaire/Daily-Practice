@@ -20,4 +20,4 @@ function binarySearch(array: number[], x: number): number{
     return -1
 }
 
-console.log(binarySearch(haystack, needle))
+console.log(binarySearch(haystack, needle)) // Returns index of needle in the haystack
