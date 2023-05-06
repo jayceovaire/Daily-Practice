@@ -10,11 +10,12 @@ function binarySearch(array: number[], x: number): number{
     let high: number = array.length - 1
     while(low <= high){
         let mid: number = Math.floor((low + high) / 2)
-        if(array[mid] < x){
-            low = mid + 1
-        }
-        else if(array[mid] === x){
+        let value = array[mid]
+        if(value === x){
             return mid
+        }
+        else if(value < x){
+            low = mid + 1
         }
         else{
             high = mid - 1
