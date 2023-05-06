@@ -6,4 +6,4 @@
 
 const a: any = [] //is not an array
 
-
+console.log('this is working typescript')
