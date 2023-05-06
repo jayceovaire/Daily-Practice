@@ -1,4 +1,7 @@
 
+// Big O of Binary Search O(log n)
+// Binary search can only be used on a sorted list
+
 const haystack: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 const needle: number = 5
 
