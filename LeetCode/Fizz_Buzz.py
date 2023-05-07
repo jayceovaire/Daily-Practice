@@ -46,9 +46,3 @@ def fizzbuzz_recursive(n=100):
         output = str(n)
 
     return fizzbuzz_recursive(n-1) + ' ' + output
-
-
-def returner(function):
-    print(function)
-
-returner(fizzbuzz_recursive())
