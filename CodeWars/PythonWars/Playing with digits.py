@@ -1,4 +1,6 @@
-
+# if sum of each number in num to the power of p(n + 1)
+# can be divided by num with remainder 0.
+# return the result of the divided num.
 
 
 def dig_pow(n, p):
