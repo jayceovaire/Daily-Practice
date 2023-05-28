@@ -1,3 +1,6 @@
+
+// given an array of numbers, return the average of the numbers in the array.
+
 export function findAverage(array: number[]): number {
     if (array.length == 0){
         return 0
