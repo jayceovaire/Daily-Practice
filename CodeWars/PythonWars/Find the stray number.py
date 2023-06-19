@@ -14,6 +14,3 @@ def stray(arr: list) -> int:
 def stray2(arr: list) -> int:
     filter = {i: arr.count(i) for i in arr}
     return [key for key, value in filter.items() if value < 2][0]
-
-
-
