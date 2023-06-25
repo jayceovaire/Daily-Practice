@@ -2,7 +2,7 @@ import random
 
 """Chicken Farm Simulator"""
 
-global feed
+
 feed = 0
 
 
