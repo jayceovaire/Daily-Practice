@@ -2,9 +2,7 @@
 // distance, determine the exact spot in which it will break in the most
 // optimized way.
 
-const floors: boolean[] = [false, false, false, false, false, false, false,
-    false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false, true, true,
-    true, true, true, true, true, true, true]
+const floors: boolean[] = [false, false, false, true, true, true, true]
 
 
 function two_crystal_balls(breaks: boolean[]): string {

@@ -50,4 +50,16 @@ class Linkedlist:
             current_node = current_node.next
 
 
+# Create a linked list
+my_list = Linkedlist()
+
+# Append elements to the linked list
+
+for i in range(1, 101):
+    my_list.add(i)
+
+
+
+# Display the linked list
+my_list.print_list()
 
